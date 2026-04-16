@@ -1,0 +1,21 @@
+cmake_minimum_required(VERSION 3.15)
+project(uwpDepot NONE)
+
+set(UWP_X64_BASE "${CMAKE_CURRENT_LIST_DIR}/x64")
+
+add_library(uwp::LIBUWP SHARED IMPORTED GLOBAL)
+add_library(uwp::SDL2 SHARED IMPORTED GLOBAL)
+
+set_target_properties(uwp::LIBUWP PROPERTIES
+	IMPORTED_LOCATION "${UWP_X64_BASE}/bin/libuwp.dll"
+	IMPORTED_IMPLIB   "${UWP_X64_BASE}/lib/libuwp.lib"
+	INTERFACE_INCLUDE_DIRECTORIES "${UWP_X64_BASE}/include"
+)
+
+
+set_target_properties(uwp::SDL2 PROPERTIES
+	IMPORTED_LOCATION "${UWP_X64_BASE}/bin/SDL2.dll"
+	IMPORTED_IMPLIB   "${UWP_X64_BASE}/lib/SDL2.lib"
+	INTERFACE_INCLUDE_DIRECTORIES
+		"${UWP_X64_BASE}/include;${UWP_X64_BASE}/include/SDL2"
+)
