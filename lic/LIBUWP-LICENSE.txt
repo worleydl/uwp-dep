@@ -1,0 +1,3 @@
+Copyright 2025 Daniel Worley
+
+zlib license, see SDL
