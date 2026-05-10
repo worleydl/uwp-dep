@@ -1,5 +1,8 @@
 ﻿#pragma once
 
+#include <windows.h>
+#include <d3dcommon.h>
+
 #define LIBAPI extern "C" __declspec(dllexport)
 
 // :: Screen information
@@ -15,6 +18,9 @@ LIBAPI void  uwp_SetScreenSize(int x, int y);
 // :: Filepaths
 LIBAPI void uwp_GetBundlePath(char* buffer);
 LIBAPI void uwp_GetBundleFilePath(char* buffer, const char* filename);
+
+ // MT dlls can be finnicky about loading other DLL's, call back here to workaround.
+LIBAPI HMODULE uwp_LoadLibrary(LPCWSTR path);
 
 // :: Events
 
